@@ -1,1 +1,64 @@
 @import 'tailwindcss';
+
+:root {
+    --color-main-background: #F3F2FF;
+
+    /* Blue */
+    --color-blue-100: #0B23F4;
+    --color-blue-90: #2339F5;
+    --color-blue-80: #3C4FF6;
+    --color-blue-70: #5465F7;
+    --color-blue-60: #6D7BF8;
+    --color-blue-50: #8591F9;
+    --color-blue-40: #9DA7FB;
+    --color-blue-30: #B6BDFC;
+    --color-blue-20: #CED3FD;
+    --color-blue-10: #E7E9FE;
+
+    /* Orange */
+    --color-orange-100: #F4320B;
+    --color-orange-90: #F54623;
+    --color-orange-80: #F65B3C;
+    --color-orange-70: #F76F54;
+    --color-orange-60: #F8846D;
+    --color-orange-50: #F99885;
+    --color-orange-40: #FBAD9D;
+    --color-orange-30: #FCC1B6;
+    --color-orange-20: #FDD6CE;
+    --color-orange-10: #FEEAE7;
+
+    /* Gray */
+    --color-gray-100: #111111;
+    --color-gray-90: #292929;
+    --color-gray-80: #414141;
+    --color-gray-70: #585858;
+    --color-gray-60: #707070;
+    --color-gray-50: #888888;
+    --color-gray-40: #A0A0A0;
+    --color-gray-30: #B8B8B8;
+    --color-gray-20: #CFCFCF;
+    --color-gray-10: #E7E7E7;
+
+    /* Typography */
+    --color-text-primary: var(--color-gray-100);
+    --color-text-secondary: var(--color-gray-60);
+    --color-text-tertiary: var(--color-gray-10);
+    --color-text-blue: var(--color-blue-100);
+    --color-text-orange: var(--color-orange-100);
+
+    /* Surface */
+    --color-surface-blue: var(--color-blue-100);
+    --color-surface-light-blue: var(--color-blue-30);
+    --color-surface-orange: var(--color-orange-100);
+    --color-surface-light-orange: var(--color-orange-30);
+    --color-surface-secondary: #F2F3FF;
+    --color-surface-action: var(--color-blue-100);
+    --color-surface-action-hover: var(--color-blue-70);
+    --color-surface-white: #FFFFFF;
+    --color-surface-black: #000000;
+    --color-surface-background: var(--color-gray-10);
+
+    /* Border */
+    --color-border-primary: var(--color-blue-100);
+    --color-border-secondary: #717171;
+}
