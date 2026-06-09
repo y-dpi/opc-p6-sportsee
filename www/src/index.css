@@ -1,5 +1,13 @@
 @import 'tailwindcss';
 
+/* Fonts */
+@font-face {
+    font-family: 'Inter';
+    src: url('./assets/inter.ttf') format('truetype');
+    font-weight: 100 900;
+    font-display: swap;
+}
+
 :root {
     --color-main-background: #F3F2FF;
 
@@ -61,4 +69,23 @@
     /* Border */
     --color-border-primary: var(--color-blue-100);
     --color-border-secondary: #717171;
+
+    /* Fonts */
+    --font-main: 'Inter', system-ui, sans-serif;
+    --font-heading-1-weight: 900;
+    --font-heading-1-size: 48;
+    --font-heading-2-weight: 700;
+    --font-heading-2-size: 36;
+    --font-heading-3-weight: 600;
+    --font-heading-3-size: 28;
+    --font-heading-4-weight: 500;
+    --font-heading-4-size: 22;
+    --font-body-large-weight: 500;
+    --font-body-large-size: 16;
+    --font-body-default-weight: 400;
+    --font-body-default-size: 14;
+    --font-body-small-weight: 400;
+    --font-body-small-size: 12;
+    --font-caption-weight: 400;
+    --font-caption-size: 10;
 }
