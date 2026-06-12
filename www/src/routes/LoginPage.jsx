@@ -1,11 +1,30 @@
 // Dependencies.
+import { useState } from 'react';
+import { useNavigate, NavLink } from 'react-router-dom';
 import loginBg from '../assets/login-bg.png';
 import mainIcon from '../assets/main-icon.svg';
-import { NavLink } from 'react-router-dom';
 import Button from '../components/Button';
 import InputField from '../components/InputField';
+import { login } from '../utils/auth.js';
 
 export default function LoginPage() {
+  const navigate = useNavigate();
+  const [error, setError] = useState(null);
+
+  // Submit credentials, then redirect to the dashboard on success.
+  async function handleSubmit(event) {
+    event.preventDefault();
+    setError(null);
+
+    const form = new FormData(event.currentTarget);
+    try {
+      await login(form.get('username'), form.get('password'));
+      navigate('/dashboard', { replace: true });
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
   return (
     <main className='flex h-screen w-screen flex-row bg-(--color-main-background) font-(family-name:--font-main)'>
 
@@ -17,9 +36,12 @@ export default function LoginPage() {
           <div className='w-full max-w-100 rounded-xl bg-(--color-surface-white) p-10'>
             <h1 className='text-[calc(var(--font-heading-3-size)*1px)] font-(--font-heading-3-weight) leading-tight text-(--color-text-blue)'>Transformez <br/> vos stats en résultats</h1>
             <h2 className='mt-8 text-[calc(var(--font-heading-4-size)*1px)] font-(--font-heading-4-weight) text-(--color-text-primary)'>Se connecter</h2>
-            <form className='mt-6 flex flex-col'>
-              <InputField id='email' label='Adresse email' type='email' />
-              <InputField id='password' label='Mot de passe' password className='mt-5' />
+            <form className='mt-6 flex flex-col' onSubmit={handleSubmit}>
+              <InputField id='username' name='username' label="Nom d'utilisateur" type='username' />
+              <InputField id='password' name='password' label='Mot de passe' password className='mt-5' />
+              {error && (
+                <p className='mt-4 text-[calc(var(--font-body-small-size)*1px)] font-(--font-body-small-weight) text-(--color-text-orange)'>{error}</p>
+              )}
               <Button type='submit' className='mt-8 w-full'>Se connecter</Button>
             </form>
             <NavLink className='inline-block transition-colors hover:text-(--color-text-blue) text-[calc(var(--font-body-default-size)*1px)] font-(--font-body-default-weight) text-(--color-text-primary) mt-9 mb-6'>Mot de passe oublié ?</NavLink>

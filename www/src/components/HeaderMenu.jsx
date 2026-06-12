@@ -1,5 +1,6 @@
 // Dependencies.
 import { NavLink } from 'react-router-dom';
+import { clearTokenCookie } from '../utils/auth.js';
 
 // Header navigation menu component.
 export default function HeaderMenu({ routes = [] }) {
@@ -9,7 +10,7 @@ export default function HeaderMenu({ routes = [] }) {
 				<NavLink key={route} to={route} className='transition-colors hover:text-(--color-text-blue) aria-[current=page]:text-(--color-text-blue)'>{label}</NavLink>
 			))}
 			<span className='h-4 w-px bg-(--color-gray-30)' />
-			<NavLink to='/login' className='text-(--color-text-blue) transition-colors hover:text-(--color-surface-action-hover)'>Se déconnecter</NavLink>
+			<NavLink to='/login' onClick={clearTokenCookie} className='text-(--color-text-blue) transition-colors hover:text-(--color-surface-action-hover)'>Se déconnecter</NavLink>
 		</nav>
 	)
 }
