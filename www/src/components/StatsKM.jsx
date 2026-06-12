@@ -31,7 +31,7 @@ function ChartTooltip({ active, payload }) {
 }
 
 // Distance bar chart.
-export default function StatsKM({ title = '18km en moyenne', subtitle = 'Total des kilomètres 4 dernières semaines', period = '28 mai - 25 juin', data = SAMPLE_DATA, onPrev, onNext, className = '' }) {
+export default function StatsKM({ title = '18km en moyenne', subtitle = 'Total des kilomètres 4 dernières semaines', period = '28 mai - 25 juin', data = SAMPLE_DATA, onPrev, onNext, nextDisabled = false, className = '' }) {
 	return (
 		<div className={`flex flex-col rounded-xl bg-(--color-surface-white) p-8 ${className}`}>
 			{/* Header */}
@@ -41,7 +41,7 @@ export default function StatsKM({ title = '18km en moyenne', subtitle = 'Total d
 					<div className='flex shrink-0 items-center gap-2'>
 						<Button variant='navl' onClick={onPrev} aria-label='Période précédente' />
 						<span className='whitespace-nowrap text-[calc(var(--font-body-small-size)*1px)] font-(--font-body-small-weight) text-(--color-text-primary)'>{period}</span>
-						<Button variant='navr' onClick={onNext} aria-label='Période suivante' />
+						<Button variant='navr' onClick={onNext} disabled={nextDisabled} aria-label='Période suivante' />
 					</div>
 				</div>
 				<p className='mt-1 text-[calc(var(--font-body-default-size)*1px)] font-(--font-body-default-weight) text-(--color-text-secondary)'>{subtitle}</p>

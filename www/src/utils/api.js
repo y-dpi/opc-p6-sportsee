@@ -31,8 +31,8 @@ export async function getUserInfo() {
   return apiGet('/api/user-info');
 }
 
-// Get the user's running sessions between two dates.
 /**
+ * Get the user's running sessions between two dates.
  * @param {Date} startWeek
  * @param {Date} endWeek
  */

@@ -15,6 +15,7 @@ export function useUserInfo() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    
     // Use cached value.
     if (userInfo) return;
 
@@ -30,6 +31,7 @@ export function useUserInfo() {
       .finally(() => {
         if (!cancelled) setLoading(false);
       });
+
     return () => {
       cancelled = true;
     };

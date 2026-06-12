@@ -47,7 +47,7 @@ function ChartTooltip({ active, payload, label }) {
 }
 
 // BPM bar chart.
-export default function StatsBPM({ title = '163 BPM', subtitle = 'Fréquence cardiaque moyenne', period = '28 mai - 04 juin', data = SAMPLE_DATA, onPrev, onNext, className = '' }) {
+export default function StatsBPM({ title = '163 BPM', subtitle = 'Fréquence cardiaque moyenne', period = '28 mai - 04 juin', data = SAMPLE_DATA, onPrev, onNext, nextDisabled = false, className = '' }) {
 	const [hovered, setHovered] = useState(false);
 
 	return (
@@ -59,7 +59,7 @@ export default function StatsBPM({ title = '163 BPM', subtitle = 'Fréquence car
 					<div className='flex shrink-0 items-center gap-2'>
 						<Button variant='navl' onClick={onPrev} aria-label='Période précédente' />
 						<span className='whitespace-nowrap text-[calc(var(--font-body-small-size)*1px)] font-(--font-body-small-weight) text-(--color-text-primary)'>{period}</span>
-						<Button variant='navr' onClick={onNext} aria-label='Période suivante' />
+						<Button variant='navr' onClick={onNext} disabled={nextDisabled} aria-label='Période suivante' />
 					</div>
 				</div>
 				<p className='mt-1 text-[calc(var(--font-body-default-size)*1px)] font-(--font-body-default-weight) text-(--color-text-secondary)'>{subtitle}</p>
