@@ -5,7 +5,7 @@ export const TOKEN_COOKIE_NAME = 'sportsee-user-token';
 export const IS_MOCK = false;
 
 // Backend base URL.
-const API_BASE_URL = 'http://localhost:8000';
+export const API_BASE_URL = 'http://localhost:8000';
 
 // Default token in mock mode: no validation so unimportant.
 const MOCK_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ1c2VyNDU2IiwiaWF0IjoxNzc5OTc2ODUxLCJleHAiOjE3ODAwNjMyNTF9.d13nzkX8P5jYz0-YmCNCIk331cM5mBzVRX4m230bfuk';
