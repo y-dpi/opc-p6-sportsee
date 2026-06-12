@@ -9,6 +9,9 @@ import MainLayout from './layouts/MainLayout.jsx'
 // Components.
 import RequireAuth from './components/RequireAuth.jsx'
 
+// Context.
+import { UserInfoProvider } from './context/UserInfoProvider.jsx'
+
 // Routes.
 import LoginPage from './routes/LoginPage.jsx'
 import DashboardPage from './routes/DashboardPage.jsx'
@@ -19,7 +22,8 @@ import NotFoundPage from './routes/NotFoundPage.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <Routes>
+      <UserInfoProvider>
+        <Routes>
         <Route path='/login' element={<LoginPage />}></Route>
         <Route element={<RequireAuth />}>
           <Route index element={<Navigate to='/dashboard' replace />}></Route>
@@ -31,7 +35,8 @@ createRoot(document.getElementById('root')).render(
         <Route element={<MainLayout />}>
             <Route path='*' element={<NotFoundPage />}></Route>
           </Route>
-      </Routes>
+        </Routes>
+      </UserInfoProvider>
     </BrowserRouter>
   </StrictMode>,
 )
