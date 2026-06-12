@@ -38,7 +38,12 @@ export async function getUserInfo() {
  */
 export async function getUserActivity(startWeek, endWeek) {
   if (IS_MOCK) {
-    return (await import('../mock-data/userActivity.json')).default;
+    const sessions = (await import('../mock-data/userActivity.json')).default;
+    const now = new Date();
+    return sessions.filter((session) => {
+      const date = new Date(session.date);
+      return date >= startWeek && date <= endWeek && date <= now;
+    });
   }
 
   const params = new URLSearchParams({
