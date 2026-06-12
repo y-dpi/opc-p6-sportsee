@@ -1,15 +1,17 @@
 // Dependencies.
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
 import loginBg from '../assets/login-bg.png';
 import mainIcon from '../assets/main-icon.svg';
 import Button from '../components/Button';
 import InputField from '../components/InputField';
 import { login } from '../utils/auth.js';
+import { UserInfoContext } from '../context/UserInfoContext.js';
 
 export default function LoginPage() {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
+  const { resetUserInfo } = useContext(UserInfoContext);
 
   // Submit credentials, then redirect to the dashboard on success.
   async function handleSubmit(event) {
@@ -19,6 +21,7 @@ export default function LoginPage() {
     const form = new FormData(event.currentTarget);
     try {
       await login(form.get('username'), form.get('password'));
+      resetUserInfo();
       navigate('/dashboard', { replace: true });
     } catch (err) {
       setError(err.message);

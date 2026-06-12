@@ -4,14 +4,8 @@ import StatsKM from '../components/StatsKM.jsx';
 import StatsBPM from '../components/StatsBPM.jsx';
 import PieChart from '../components/PieChart.jsx';
 import StatCard from '../components/StatCard.jsx';
-
-// Sample data: user information.
-const USER = {
-  name: 'Clara Dupont',
-  memberSince: 'Membre depuis le 14 juin 2023',
-  photo: 'https://thesportsedit.com/cdn/shop/files/carbon_plated_running_shoes_CL_645x900_crop_center.jpg?v=5545842323198498418',
-  totalDistance: '312 km',
-};
+import { useUserInfo } from '../hooks/useUserInfo.js';
+import { FALLBACK_PHOTO, formatDate } from '../utils/profile.js';
 
 // Sample data: weekly distance.
 const WEEKLY_DISTANCE = {
@@ -57,21 +51,34 @@ const WEEK = {
 };
 
 export default function DashboardPage() {
+  const { userInfo, loading, error } = useUserInfo();
+
+  if (loading) {
+    return <p className='text-(--color-text-secondary)'>Chargement…</p>;
+  }
+
+  if (error || !userInfo) {
+    return <p className='text-(--color-text-orange)'>Impossible de charger vos informations.</p>;
+  }
+
+  const { profile, statistics } = userInfo;
+  const name = `${profile.firstName} ${profile.lastName}`;
+
   return (
     <div className='mx-auto flex max-w-300 flex-col gap-10'>
 
       {/* Profile header */}
       <section className='flex items-center justify-between gap-6 rounded-xl bg-[linear-gradient(to_bottom,var(--color-surface-white),transparent)] p-8'>
         <div className='flex items-center gap-6'>
-          <ProfilePicture src={USER.photo} alt={USER.name} />
+          <ProfilePicture src={profile.profilePicture} fallback={FALLBACK_PHOTO} alt={name} />
           <div>
-            <h1 className='text-[calc(var(--font-heading-4-size)*1px)] font-(--font-heading-4-weight) text-(--color-text-primary)'>{USER.name}</h1>
-            <p className='text-[calc(var(--font-body-default-size)*1px)] font-(--font-body-default-weight) text-(--color-text-secondary)'>{USER.memberSince}</p>
+            <h1 className='text-[calc(var(--font-heading-4-size)*1px)] font-(--font-heading-4-weight) text-(--color-text-primary)'>{name}</h1>
+            <p className='text-[calc(var(--font-body-default-size)*1px)] font-(--font-body-default-weight) text-(--color-text-secondary)'>Membre depuis le {formatDate(profile.createdAt)}</p>
           </div>
         </div>
         <div className='flex items-center gap-6'>
           <p className='text-[calc(var(--font-body-default-size)*1px)] font-(--font-body-default-weight) text-(--color-text-secondary)'>Distance totale parcourue</p>
-          <Achievement value={USER.totalDistance} />
+          <Achievement value={`${statistics.totalDistance} km`} />
         </div>
       </section>
 
